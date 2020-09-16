@@ -1,0 +1,6 @@
+name: AdminTools
+version: ${project.version}
+main: me.mrdev.AdminTools
+commands:
+   vanish:
+      description: A vanish command !!
