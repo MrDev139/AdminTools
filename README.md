@@ -12,5 +12,5 @@ Current Version : Beta 1.1
 ### Current version is Beta which means :
 - Is still in development , testing process and not complete
 - May Have bugs which will be fixed in next release
-- Do not directly just copy , paste , compile and put it in your server (if is public)
+- Do not directly just copy , paste , compile code and put your plugin in your server (if is public)
 - You can report Bugs by opening issues in github and fix it in next release(commit)
