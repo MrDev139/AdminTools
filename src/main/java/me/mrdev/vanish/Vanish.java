@@ -51,12 +51,13 @@ public class Vanish implements CommandExecutor {
                                 player.sendTitle(ChatColor.GREEN + "You are currently vanished", ChatColor.YELLOW + "If you want to become visible type /vanish");
                             } else this.cancel();
                         }
-                    }.runTaskTimer(plugin ,20 , 1);
+                    }.runTaskTimer(plugin ,40 , 40);
                     return true;
 
                 }else {
                     VanishList.remove(player.getUniqueId());
                     players.forEach(p -> p.showPlayer(player));
+                    player.sendTitle(ChatColor.GREEN + "You are now Visible", ChatColor.YELLOW + "If you want to vanish again type /vanish");
                     player.sendMessage(ChatColor.GREEN + "You are now Visible !");
                     return true;
                 }
@@ -64,7 +65,7 @@ public class Vanish implements CommandExecutor {
                 if(args[0].equalsIgnoreCase("List")) {
                     VanishList.forEach(vanishedID -> {
                             Player vanishedPLayer = Bukkit.getPlayer(vanishedID);
-                            if(vanishedPLayer == null) {
+                            if(vanishedPLayer == null || VanishList.size() <= 0) {
                                 player.sendMessage(ChatColor.GREEN + "There is no Vanished Players");
                             }else {
                                 String names = vanishedPLayer.getName();

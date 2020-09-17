@@ -4,3 +4,5 @@ main: me.mrdev.AdminTools
 commands:
    vanish:
       description: A vanish command !!
+   PlayerList:
+      description: A gui version of List command !!
