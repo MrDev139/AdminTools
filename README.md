@@ -5,7 +5,7 @@ AdminTools is a spigot plugin that which has some utilites and tools for server 
 
 Current Version : Beta 1.1
 
-[![Codacy](https://app.codacy.com/manual/MrDev139/AdminTools)
+[![Codacy](https://app.codacy.com/manual/MrDev139/AdminTools)]
 
 ## Features
 -  Uses java 8 features
