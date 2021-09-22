@@ -16,11 +16,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerList implements CommandExecutor {
 
@@ -35,22 +33,32 @@ public class PlayerList implements CommandExecutor {
             return false;
         }else {
             Player player = (Player)sender;
-            Collection<? extends Player> OnlinePlayers = Bukkit.getOnlinePlayers();
             if(!player.hasPermission("AT.List")) {
                 player.sendMessage("Oops , You don't have permission for it , but you still can use /list");
                 return false;
             }else {
-                Inventory inv = Bukkit.createInventory(null , OnlinePlayers.size() , "Online players");
-                OnlinePlayers.forEach(onlinePlayer -> {
-                    UUID ID = onlinePlayer.getUniqueId();
-                    String names = ChatColor.AQUA + onlinePlayer.getName();
-                    ArrayList<String> lore = new ArrayList<>();
+                Collection<? extends Player> OnlinePlayers = Bukkit.getOnlinePlayers();
+                Inventory inv = Bukkit.createInventory(null , Math.max(OnlinePlayers.size(), 9), "Online players");
+                OnlinePlayers.forEach(p -> {
+                    UUID ID = p.getUniqueId();
+                    String display = ChatColor.AQUA + p.getName();
+                    ItemStack item = ItemUtil.createItem(Material.SKULL , 1 , display);
+                    ArrayList<String> lore;
+                    SkullMeta meta;
                     if(Vanish.getVanishList().contains(ID)) {
-                        lore.add(ChatColor.GREEN + "Vanished");
-                        inv.addItem(ItemUtil.createItem(Material.SKULL , 1 , names , lore));
+                        lore = new ArrayList<>(Collections.singletonList(ChatColor.GREEN + "Vanished"));
+                        meta = (SkullMeta) item.getItemMeta();
+                        meta.setOwner(p.getName());
+                        meta.setLore(lore);
+                        item.setItemMeta(meta);
+                        inv.addItem(item);
                     }else {
-                        lore.add(ChatColor.GREEN + "Visible");
-                        inv.addItem(ItemUtil.createItem(Material.SKULL , 1 , names , lore));
+                        lore = new ArrayList<>(Collections.singletonList(ChatColor.GREEN + "Visible"));
+                        meta = (SkullMeta) item.getItemMeta();
+                        meta.setOwner(p.getName());
+                        meta.setLore(lore);
+                        item.setItemMeta(meta);
+                        inv.addItem(item);
                     }
                     player.openInventory(inv);
                 });

@@ -6,15 +6,19 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AdminTools extends JavaPlugin {
 
+
     @Override
-    public void onEnable() {
+    public void onEnable() { //This project is trash and part of the past
+        long time = System.currentTimeMillis();
         new Vanish(this);
         new PlayerList(this);
+        time = System.currentTimeMillis() - time;
+        getLogger().info("The plugin took " + time + "ms to load a cmd and a listener");
     }
 
 
     @Override
     public void onDisable() {
-
+        getLogger().info("Just remove me already please");
     }
 }

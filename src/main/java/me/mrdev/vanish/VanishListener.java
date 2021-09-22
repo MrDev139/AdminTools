@@ -24,11 +24,6 @@ public class VanishListener implements Listener {
     @EventHandler
     public void onHit(EntityDamageByEntityEvent event) {
         if(event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
-            /*Or you can do :
-            * if(event.getEntityType() == EntityType.PLAYER && event.getDamager().getType() == EntityType.PLAYER){
-            * Rest of the code here
-            * }
-             */
             Player attacker = (Player)event.getDamager();
             if(Vanish.getVanishList().contains(attacker.getUniqueId())) {
                 event.setCancelled(true);
