@@ -7,7 +7,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemUtil {
+public class ItemUtil { //dead
 
     private static ItemStack itemStack;
 
