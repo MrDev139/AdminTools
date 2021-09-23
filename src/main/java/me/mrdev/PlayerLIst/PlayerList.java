@@ -42,7 +42,7 @@ public class PlayerList implements CommandExecutor {
                 OnlinePlayers.forEach(p -> {
                     UUID ID = p.getUniqueId();
                     String display = ChatColor.AQUA + p.getName();
-                    ItemStack item = ItemUtil.createItem(Material.SKULL , 1 , display);
+                    ItemStack item = ItemUtil.createItem(Material.SKULL_ITEM , 1 , display);
                     ArrayList<String> lore;
                     SkullMeta meta;
                     if(Vanish.getVanishList().contains(ID)) {
