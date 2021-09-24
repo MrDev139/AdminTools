@@ -21,6 +21,7 @@ public class Vanish implements CommandExecutor {
 
     public Vanish(AdminTools plugin) {
         plugin.getCommand("vanish").setExecutor(this);
+        plugin.getServer().getPluginManager().registerEvents(new VanishListener() , plugin);
     }
 
     @Override

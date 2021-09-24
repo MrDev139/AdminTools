@@ -24,6 +24,7 @@ public class PlayerList implements CommandExecutor {
 
     public PlayerList(AdminTools plugin) {
         plugin.getCommand("PlayerList").setExecutor(this);
+        plugin.getServer().getPluginManager().registerEvents(new PLListener() , plugin);
     }
 
     @Override
@@ -34,18 +35,18 @@ public class PlayerList implements CommandExecutor {
         }else {
             Player player = (Player)sender;
             if(!player.hasPermission("AT.List")) {
-                player.sendMessage("Oops , You don't have permission for it , but you still can use /list");
+                player.sendMessage("You would normally have permission , but looks like you don't!");
                 return false;
             }else {
                 Collection<? extends Player> OnlinePlayers = Bukkit.getOnlinePlayers();
                 Inventory inv = Bukkit.createInventory(null , Math.max(OnlinePlayers.size(), 9), "Online players");
                 OnlinePlayers.forEach(p -> {
                     ItemStack item = ItemUtil.createItem(Material.SKULL_ITEM , 1 , ChatColor.AQUA + p.getName());
-                    ArrayList<String>  lore = new ArrayList<>(Collections.singletonList(ChatColor.GREEN + "Visible"));
                     SkullMeta meta = (SkullMeta) item.getItemMeta();
+                    ArrayList<String>  lore = new ArrayList<>(Collections.singletonList(ChatColor.GREEN + "Visible"));
                     meta.setOwner(p.getName());
                     if(Vanish.getVanishList().contains(p.getUniqueId())) {
-                        lore.set(0 , ChatColor.GREEN + "Visible");
+                        lore.set(0 , ChatColor.GREEN + "Vanished");
                     }
                     meta.setLore(lore);
                     item.setItemMeta(meta);

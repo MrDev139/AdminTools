@@ -13,7 +13,7 @@ public final class AdminTools extends JavaPlugin {
         new Vanish(this);
         new PlayerList(this);
         time = System.currentTimeMillis() - time;
-        getLogger().info("The plugin took " + time + "ms to load a cmd and a listener");
+        getLogger().info("The plugin took " + time + "ms to load a 2 cmds and 2 listeners");
     }
 
 

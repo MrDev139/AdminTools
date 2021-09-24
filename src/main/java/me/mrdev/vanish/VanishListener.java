@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class VanishListener implements Listener {
 
+
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
