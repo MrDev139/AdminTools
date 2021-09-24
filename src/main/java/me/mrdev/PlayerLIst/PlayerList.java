@@ -40,26 +40,16 @@ public class PlayerList implements CommandExecutor {
                 Collection<? extends Player> OnlinePlayers = Bukkit.getOnlinePlayers();
                 Inventory inv = Bukkit.createInventory(null , Math.max(OnlinePlayers.size(), 9), "Online players");
                 OnlinePlayers.forEach(p -> {
-                    UUID ID = p.getUniqueId();
-                    String display = ChatColor.AQUA + p.getName();
-                    ItemStack item = ItemUtil.createItem(Material.SKULL_ITEM , 1 , display);
-                    ArrayList<String> lore;
-                    SkullMeta meta;
-                    if(Vanish.getVanishList().contains(ID)) {
-                        lore = new ArrayList<>(Collections.singletonList(ChatColor.GREEN + "Vanished"));
-                        meta = (SkullMeta) item.getItemMeta();
-                        meta.setOwner(p.getName());
-                        meta.setLore(lore);
-                        item.setItemMeta(meta);
-                        inv.addItem(item);
-                    }else {
-                        lore = new ArrayList<>(Collections.singletonList(ChatColor.GREEN + "Visible"));
-                        meta = (SkullMeta) item.getItemMeta();
-                        meta.setOwner(p.getName());
-                        meta.setLore(lore);
-                        item.setItemMeta(meta);
-                        inv.addItem(item);
+                    ItemStack item = ItemUtil.createItem(Material.SKULL_ITEM , 1 , ChatColor.AQUA + p.getName());
+                    ArrayList<String>  lore = new ArrayList<>(Collections.singletonList(ChatColor.GREEN + "Visible"));
+                    SkullMeta meta = (SkullMeta) item.getItemMeta();
+                    meta.setOwner(p.getName());
+                    if(Vanish.getVanishList().contains(p.getUniqueId())) {
+                        lore.set(0 , ChatColor.GREEN + "Visible");
                     }
+                    meta.setLore(lore);
+                    item.setItemMeta(meta);
+                    inv.addItem(item);
                     player.openInventory(inv);
                 });
             }
