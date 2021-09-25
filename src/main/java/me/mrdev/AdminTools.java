@@ -6,7 +6,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AdminTools extends JavaPlugin {
 
-
     @Override
     public void onEnable() { //This project is trash and part of the past
         long time = System.currentTimeMillis();

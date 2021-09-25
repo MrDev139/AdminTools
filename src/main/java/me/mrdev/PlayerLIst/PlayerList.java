@@ -1,9 +1,9 @@
 package me.mrdev.PlayerLIst;
 
 
-import com.avaje.ebean.validation.NotNull;
 import me.mrdev.AdminTools;
 import me.mrdev.Utils.ItemUtil;
+import me.mrdev.Utils.InvUtils;
 import me.mrdev.vanish.Vanish;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,8 +12,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -39,7 +37,7 @@ public class PlayerList implements CommandExecutor {
                 return false;
             }else {
                 Collection<? extends Player> OnlinePlayers = Bukkit.getOnlinePlayers();
-                Inventory inv = Bukkit.createInventory(null , Math.max(OnlinePlayers.size(), 9), "Online players");
+                Inventory inv = Bukkit.createInventory(null , InvUtils.getDivisible(OnlinePlayers.size()), "Online players");
                 OnlinePlayers.forEach(p -> {
                     ItemStack item = ItemUtil.createItem(Material.SKULL_ITEM , 1 , ChatColor.AQUA + p.getName());
                     SkullMeta meta = (SkullMeta) item.getItemMeta();
