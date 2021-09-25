@@ -1,6 +1,7 @@
 package me.mrdev.PlayerLIst;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +19,7 @@ public class PLListener implements Listener {
                 ItemStack head = event.getCurrentItem();
                 if(head.hasItemMeta()) {
                     Bukkit.getOnlinePlayers().stream()
-                            .filter(p -> p.getName().equals(head.getItemMeta().getDisplayName()))
+                            .filter(p -> p.getName().equals(ChatColor.RESET + head.getItemMeta().getDisplayName()))
                             .findAny().ifPresent(p -> player.teleport(p.getLocation()));
                 }
                 event.setCancelled(true);
