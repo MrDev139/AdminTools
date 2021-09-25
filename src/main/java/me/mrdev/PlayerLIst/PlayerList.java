@@ -48,6 +48,9 @@ public class PlayerList implements CommandExecutor {
                     if(Vanish.getVanishList().contains(p.getUniqueId())) {
                         lore.set(0 , ChatColor.GREEN + "Vanished");
                     }
+                    if (p == player) {
+                        lore.set(0 , lore.get(0) + ChatColor.GREEN + "(Its you)");
+                    }
                     meta.setLore(lore);
                     item.setItemMeta(meta);
                     inv.addItem(item);
